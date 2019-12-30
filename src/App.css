@@ -1,0 +1,234 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#root {
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 8%;
+}
+
+.message {
+  margin-bottom: 5px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: 10px;
+}
+
+.player-info {
+  display: flex;
+  width: 110px;
+  justify-content: space-between;
+}
+
+.hand-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tile {
+  border: 1px solid black;
+  height: 67px;
+  width: 90px;
+  float: left;
+  background-color: white;
+}
+
+.cmenu {
+  height: 110px;
+  width: 140px;
+  position: absolute;
+}
+
+.tile-header {
+  position: relative;
+  -webkit-text-stroke: .2px black;
+  color: white;
+  height: 28px;
+  font-size: 10px;
+  font-weight: 800;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tile-players {
+  height: 34px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.tile-price {
+  position: relative;
+  bottom: -27px;
+  font-size: 8px;
+  text-align: center;
+}
+
+.hand {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  min-width: 720px;
+}
+
+.hand-stack {
+  display: flex;
+  flex-direction: column;
+  min-width: 90px;
+}
+
+.hand .tile {
+  height: 90px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin-top: -63px;
+  transition: ease .5s;
+
+}
+
+.hand-stack:hover .tile {
+  margin-top: 5px;
+  transition: ease .5s;
+}
+
+.hand-stack .tile:first-child {
+  margin-top: 0;
+}
+
+.tile-info {
+  font-size: 12px;
+}
+
+.tile-info div {
+  margin-left: 5px;
+}
+
+.trade-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trade-panel {
+  display: flex;
+}
+
+.trade-assets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trade-cash {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.trade-properties {
+  width: 400px;
+  height: 69px;
+  display: flex;
+  justify-content: center;
+}
+
+.trade-properties .tile {
+  width: 55px;
+}
+
+.mid {
+  border: 1px transparent solid;
+}
+
+.mid:nth-last-child(2) {
+  border-right: 1px black solid;
+}
+
+.mid:nth-child(2) {
+  border-left: 1px black solid;
+}
+
+.top .mid{
+  border-top: 1px black solid;
+}
+.bottom .mid{
+  border-bottom: 1px black solid;
+}
+
+.die {
+  color: grey;
+  padding: 5px;
+}
+
+.dice {
+  margin: 5px;
+}
+
+.mini {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
