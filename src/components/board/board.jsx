@@ -104,7 +104,6 @@ export default function Board(props) {
     if (!die1 && !die2) [die1, die2] = player.rollDice();
     let tilesArr = [...tiles];
     let roll = die1 + die2;
-    roll = 1;
 
     delete tilesArr[player.position].players[player.name];
     if (roll + player.position > 35) player.cash += 200;
