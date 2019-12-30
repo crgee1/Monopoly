@@ -290,6 +290,10 @@
   align-items: center;
 }
 
+.piece-container {
+  margin-bottom: 5px;
+}
+
 .piece-container .fas{
   margin-left: 5px;
 }
