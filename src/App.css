@@ -194,11 +194,11 @@
 }
 
 .buy {
-  opacity: 50%;
+  opacity: .5;
 }
 
 .buy:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .tile-info {
