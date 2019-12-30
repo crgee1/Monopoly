@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Hand(props) {
-    const { properties } = props;
+    const { properties, setMessage } = props;
 
     let propObj = {};
     properties.forEach((tile, i) => {
@@ -31,20 +31,44 @@ export default function Hand(props) {
         }
     }
 
+    const buildHome = (property) => {
+        return () => {
+            property.build();
+            setMessage(`A house was built on ${property.name}`)
+        }
+    }
+
+    const displayBuildings = (tile, max, even) => {
+        let buildingArr = [];
+        if (tile.monopoly) {
+            for (let i = 0; i < tile.buildings; i++) {
+                buildingArr.push(<i key={i} className="fas fa-home"></i>)
+            }
+            if (tile.buildings < 4){
+                if (tile.buildings !== max || even) buildingArr.push(<i key={4} className="fas fa-home buy" onClick={buildHome(tile)}></i>)
+            }
+            return <div className="tile-buildings">{buildingArr}</div>
+        }
+    }
+
     let propObjValues = Object.values(propObj);
 
     let stackStyle = propObjValues.length < 8 ? {margin: '5px'} : null;
 
     const hand = propObjValues.map((stack, idx) => {
-        
+        const max = Math.max(...stack.map(property => property.buildings));
+        const even = stack.every(property => property.buildings === stack[0].buildings)
         const stackArr = stack.map((tile, i) => {
+            
+
             return <div key={i} className="tile">
                         <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name}</header>
                         <div className="tile-info">
-                            <div>Value:${tile.price}</div>
+                            <div>Price:${tile.price}</div>
                             <div>Rent: ${tile.rent}</div>
-                            </div>
-                        <div className="tile-players"></div>
+                            <div>House Cost: ${tile.buildingPrice}</div>
+                        </div>
+                        {displayBuildings(tile, max, even)}
                    </div>
         })
         return (
@@ -62,7 +86,6 @@ export default function Hand(props) {
             </div>
             <div className="hand">
                 {hand}
-                {/* <i className="fas fa-home"></i> */}
             </div>
         </div>
     )

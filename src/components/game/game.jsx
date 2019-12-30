@@ -7,7 +7,7 @@ export default function Game(props) {
     const [players, setPlayers] = useState([]);
     useEffect(() => {
         // setPlayers([new Player('Chris', 'Bike'), new Player('Robert', 'Cat'), new Player('Garrett', 'Ship'), new Player('Gregory', 'Dog')]);
-        setPlayers([new Player('Chris', 'Bike'), new Player('Robert', 'Cat')]);
+        setPlayers([new Player('Chris', 'Bike')]);
     }, [])
     return players.length <= 0 ? null : (
         <div>

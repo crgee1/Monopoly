@@ -140,6 +140,7 @@
 }
 
 .hand .tile {
+  position: relative;
   height: 90px;
   flex-direction: column;
   display: flex;
@@ -158,8 +159,17 @@
   margin-top: 0;
 }
 
+.buy {
+  opacity: 50%;
+}
+
+.buy:hover {
+  opacity: 100%;
+}
+
 .tile-info {
-  font-size: 12px;
+  font-size: 9px;
+  font-weight: 600;
 }
 
 .tile-info div {

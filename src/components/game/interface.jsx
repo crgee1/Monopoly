@@ -209,6 +209,7 @@ export default function Interface(props) {
             {displayAction()}
             <Hand
                 properties={player.properties}
+                setMessage={setMessage}
             />
         </div>
     )
