@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Monopoly/static/css/main.6eda4150.chunk.css",
-    "main.js": "/Monopoly/static/js/main.4118b0d9.chunk.js",
-    "main.js.map": "/Monopoly/static/js/main.4118b0d9.chunk.js.map",
+    "main.css": "/Monopoly/static/css/main.f8096232.chunk.css",
+    "main.js": "/Monopoly/static/js/main.a8726cae.chunk.js",
+    "main.js.map": "/Monopoly/static/js/main.a8726cae.chunk.js.map",
     "runtime-main.js": "/Monopoly/static/js/runtime-main.35724b30.js",
     "runtime-main.js.map": "/Monopoly/static/js/runtime-main.35724b30.js.map",
     "static/js/2.08cbf798.chunk.js": "/Monopoly/static/js/2.08cbf798.chunk.js",
     "static/js/2.08cbf798.chunk.js.map": "/Monopoly/static/js/2.08cbf798.chunk.js.map",
     "index.html": "/Monopoly/index.html",
-    "precache-manifest.32c0fd41e214fb441d46e5b85df7e1d0.js": "/Monopoly/precache-manifest.32c0fd41e214fb441d46e5b85df7e1d0.js",
+    "precache-manifest.57abfe17f9fc4f98a46675676aa47881.js": "/Monopoly/precache-manifest.57abfe17f9fc4f98a46675676aa47881.js",
     "service-worker.js": "/Monopoly/service-worker.js",
-    "static/css/main.6eda4150.chunk.css.map": "/Monopoly/static/css/main.6eda4150.chunk.css.map",
+    "static/css/main.f8096232.chunk.css.map": "/Monopoly/static/css/main.f8096232.chunk.css.map",
     "static/js/2.08cbf798.chunk.js.LICENSE": "/Monopoly/static/js/2.08cbf798.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.35724b30.js",
     "static/js/2.08cbf798.chunk.js",
-    "static/css/main.6eda4150.chunk.css",
-    "static/js/main.4118b0d9.chunk.js"
+    "static/css/main.f8096232.chunk.css",
+    "static/js/main.a8726cae.chunk.js"
   ]
 }
