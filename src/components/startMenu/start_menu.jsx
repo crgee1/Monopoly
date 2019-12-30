@@ -33,11 +33,11 @@ export default function StartMenu() {
 
     const createPlayer = (e) => {
         e.preventDefault();
-        console.log(character)
         players.push(new Player(name, character[0].toUpperCase()+character.slice(1)));
         let pieceArr = [...pieces];
         pieceArr.splice(pieces.indexOf(character), 1);
         setPieces(pieceArr);
+        setCharacter();
         setName('');
     }
 

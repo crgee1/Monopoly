@@ -88,7 +88,6 @@ export default function Board(props) {
           let start = {tile};
           start['players'] = {};
           players.forEach(player => {
-            console.log(player)
             start.players[player.name] = player;
           })
           return start;
@@ -105,7 +104,6 @@ export default function Board(props) {
     if (!die1 && !die2) [die1, die2] = player.rollDice();
     let tilesArr = [...tiles];
     let roll = die1 + die2;
-    roll = 1;
 
     delete tilesArr[player.position].players[player.name];
     if (roll + player.position > 35) player.cash += 200;
@@ -243,7 +241,19 @@ export default function Board(props) {
            </div>
   });
 
-  return <div>
+  return <div className="board-container">
+          <Interface
+            move={move}
+            player={players[activePlayer]}
+            players={players}
+            setPlayers={setPlayers}
+            nextPlayer={nextPlayer}
+            roll={roll}
+            setRoll={setRoll}
+            tiles={tiles}
+            setTiles={setTiles}
+            moveToJail={moveToJail}
+          />
           <div className="board">
             <div className="row">{board.slice(0,10)}</div>
             <div className="row top">
@@ -603,17 +613,5 @@ export default function Board(props) {
             </div>
           </div>
           {displayContextMenu()}
-          <Interface 
-            move={move} 
-            player={players[activePlayer]}
-            players={players}
-            setPlayers={setPlayers}
-            nextPlayer={nextPlayer}
-            roll={roll}
-            setRoll={setRoll}
-            tiles={tiles}
-            setTiles={setTiles}
-            moveToJail={moveToJail}
-          />
         </div>
 }

@@ -42,20 +42,29 @@
   min-height: 100vh;
 }
 
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .board {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 920px;
 }
 
 .interface {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   position: absolute;
-  top: 8%;
+  margin-top: -140px;
 }
 
 .message {

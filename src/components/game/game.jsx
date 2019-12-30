@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Board from '../board/board';
 
 export default function Game(props) {
     const [activePlayer, setActivePlayer] = useState(0);
 
     const { players, setPlayers } = props;
-    console.log(players)
     if (players.length === 1) alert(`${players[activePlayer].name} won monopoly!`)
     return players.length <= 0 ? null : (
         <div>
