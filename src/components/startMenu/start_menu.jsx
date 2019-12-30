@@ -39,6 +39,7 @@ export default function StartMenu() {
         setPieces(pieceArr);
         setCharacter();
         setName('');
+        document.getElementById('name').value = '';
     }
 
     const displayPlayers = () => {
@@ -59,7 +60,7 @@ export default function StartMenu() {
         return <div className="start-menu">
                     <form className="create-form" onSubmit={createPlayer}>
                         <label>Player Name:</label>
-                        <input type="text" name={name} onChange={(e) => setName(e.currentTarget.value)}/>
+                        <input type="text" id="name" onChange={(e) => setName(e.currentTarget.value)}/>
                         <label>Choose A Piece:</label>
                         {displayPieces()}
                         <input type="submit" disabled={!name || !character} value="Add Player"/>

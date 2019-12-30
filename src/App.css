@@ -45,7 +45,7 @@
 .board-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
 }
 
@@ -64,7 +64,7 @@
   align-items: center;
   width: 100%;
   position: absolute;
-  margin-top: -140px;
+  margin-top: 75px;
 }
 
 .message {
@@ -80,8 +80,11 @@
 
 .player-info {
   display: flex;
-  width: 110px;
   justify-content: space-between;
+}
+
+.player-info div {
+  margin: 5px;
 }
 
 .hand-container {

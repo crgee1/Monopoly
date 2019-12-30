@@ -48,7 +48,6 @@ export default function Interface(props) {
                 setMessage(`${tileName}! ${name} ${tileName === 'Chance' ? 'gets' : 'loses'} $200`)
             } else if (tile instanceof GoToJail) {
                 setMessage(`${name} Goes To Jail!`);
-                setAction('jail');
                 moveToJail();
             } else {
                 setMessage(`${name} landed on ${tileName}`)
@@ -117,7 +116,7 @@ export default function Interface(props) {
                 toolbar = <div>
                             <button onClick={() => setAction('mortgage')}>Mortgage</button>
                             <button onClick={() => setAction('trade')}>Trade</button>
-                            <button onClick={() => {if (!tile.owner) setAction('purchase')}}>Buy Property</button>
+                            <button onClick={() => {if (!tile.owner && tile instanceof Property) setAction('purchase')}}>Buy Property</button>
                             {player.cash >= 0 ? <button onClick={endTurn}>End Turn</button> : <button onClick={() => setAction('bankrupt')}>Bankruptcy</button>}
                           </div>
             } else {
@@ -172,11 +171,6 @@ export default function Interface(props) {
                                     setAction(null);
                                     setMessage(null);
                                     }}>No</button>
-                            </div>
-                break;
-            case 'jail':
-                component = <div>
-                                <button onClick={() => setAction(null)}>OK</button>
                             </div>
                 break;
             case 'trade':

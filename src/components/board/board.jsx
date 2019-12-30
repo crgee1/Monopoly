@@ -139,7 +139,7 @@ export default function Board(props) {
       case 'Horse':
         figure = <i className="fas fa-horse mini"></i>;
         break;
-      case 'Bike':
+      case 'Bicycle':
         figure = <i className="fas fa-bicycle mini"></i>;
         break;
       case 'Dog':
