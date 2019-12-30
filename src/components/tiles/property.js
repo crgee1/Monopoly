@@ -36,13 +36,11 @@ export default class Property extends Tile {
 
   getMonopoly() {
     this.monopoly = true;
-    this.price *= 2
     this.rent *= 2;
   }
   
   loseMonopoly() {
     this.monopoly = false;
-    this.price /= 2
     this.rent /= 2;
   }
 
@@ -57,10 +55,8 @@ export default class Property extends Tile {
   }
 
   payRent(player) {
-    if (player.cash >= this.rent) {
-      player.cash -= this.rent;
-      this.owner.cash += this.rent;
-    }
+    player.cash -= this.rent;
+    this.owner.cash += this.rent;
   }
 
   build() {
@@ -78,6 +74,27 @@ export default class Property extends Tile {
         break;
       case 4:
         this.rent = this.rent / 45 * 80;
+        break;
+      default:
+        break;
+    }
+  }
+
+  sell() {
+    this.owner.cash += this.buildingPrice / 2;
+    this.buildings -= 1;
+    switch (this.buildings) {
+      case 0:
+        this.rent /= 5;
+        break;
+      case 1:
+        this.rent /= 3;
+        break;
+      case 2:
+        this.rent /= 3;
+        break;
+      case 3:
+        this.rent = this.rent * 45 / 80;
         break;
       default:
         break;

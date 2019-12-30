@@ -103,8 +103,8 @@ export default function Board(props) {
     let player = players[activePlayer];
     if (!die1 && !die2) [die1, die2] = player.rollDice();
     let tilesArr = [...tiles];
-    let roll = 1;
-    // let roll = die1 + die2;
+    let roll = die1 + die2;
+    roll = 1;
 
     delete tilesArr[player.position].players[player.name];
     if (roll + player.position > 35) player.cash += 200;
@@ -178,6 +178,19 @@ export default function Board(props) {
           </div>
   }
 
+  const displayHouses = (property) => {
+    if (!property.buildings) return null;
+    let buildingArr = [];
+
+    for (let i = 0; i < property.buildings; i++) {
+      buildingArr.push(<i key={i} className="fas fa-home"></i>)
+    }
+    return <div className="tile-houses">
+              <div>{buildingArr.slice(0,2)}</div>
+              <div>{buildingArr.slice(2)}</div>
+           </div>
+  }
+
   let board = tiles.map((tileObj, i) => {
     let { tile } = tileObj;
     let playerArr = Object.values(tileObj.players);
@@ -225,6 +238,7 @@ export default function Board(props) {
                 {playerArr}
               </div>
               <div className="tile-price">{tile.price ? `$${tile.price}` : null}</div>
+              {displayHouses(tile)}
            </div>
   });
 

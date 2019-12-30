@@ -48,6 +48,10 @@ export default function Interface(props) {
             } else {
                 setMessage(`${name} landed on ${tileName}`)
             }
+            if (player.cash < 0) {
+                setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property`)
+                setAction('bankrupt');
+            }
         }
     }
     
@@ -160,6 +164,9 @@ export default function Interface(props) {
                 break;
             case 'sell':
                 break;
+            case 'bankrupt':
+                component = <button>Declare Bankruptcy</button>
+                break;
             default:
                 break;
         }
@@ -208,8 +215,11 @@ export default function Interface(props) {
             </div>
             {displayAction()}
             <Hand
+                player={player}
                 properties={player.properties}
                 setMessage={setMessage}
+                tiles={tiles}
+                setTiles={setTiles}
             />
         </div>
     )

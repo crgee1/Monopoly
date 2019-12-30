@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Hand(props) {
-    const { properties, setMessage } = props;
+    const { properties, setMessage, tiles, setTiles, player } = props;
 
     let propObj = {};
     properties.forEach((tile, i) => {
@@ -33,8 +33,25 @@ export default function Hand(props) {
 
     const buildHome = (property) => {
         return () => {
-            property.build();
-            setMessage(`A house was built on ${property.name}`)
+            if (player.cash >= property.buildingPrice) {
+                property.build();
+                setMessage(`${player.name} built a house on ${property.name}`);
+                let tilesArr = [...tiles];
+                tilesArr[property.index].tile = property;
+                setTiles(tilesArr);
+            } else {
+                setMessage(`${player.name} doesn't have enough money to build on ${property.name}`)
+            }
+        }
+    }
+
+    const sellHome = (property) => {
+        return () => {
+                property.sell();
+                setMessage(`${player.name} sold a house on ${property.name}`);
+                let tilesArr = [...tiles];
+                tilesArr[property.index].tile = property;
+                setTiles(tilesArr);
         }
     }
 
@@ -42,7 +59,7 @@ export default function Hand(props) {
         let buildingArr = [];
         if (tile.monopoly) {
             for (let i = 0; i < tile.buildings; i++) {
-                buildingArr.push(<i key={i} className="fas fa-home"></i>)
+                buildingArr.push(<i key={i} className="fas fa-home" onClick={sellHome(tile)}></i>)
             }
             if (tile.buildings < 4){
                 if (tile.buildings !== max || even) buildingArr.push(<i key={4} className="fas fa-home buy" onClick={buildHome(tile)}></i>)
@@ -59,8 +76,6 @@ export default function Hand(props) {
         const max = Math.max(...stack.map(property => property.buildings));
         const even = stack.every(property => property.buildings === stack[0].buildings)
         const stackArr = stack.map((tile, i) => {
-            
-
             return <div key={i} className="tile">
                         <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name}</header>
                         <div className="tile-info">
@@ -76,7 +91,6 @@ export default function Hand(props) {
                 {stackArr}
             </div>
         )
-        
     })
 
     return (
