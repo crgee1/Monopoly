@@ -115,8 +115,20 @@ export default function Interface(props) {
             if (moved) {
                 toolbar = <div>
                             <button onClick={() => setAction('mortgage')}>Mortgage</button>
-                            <button onClick={() => setAction('trade')}>Trade</button>
-                            <button onClick={() => {if (!tile.owner && tile instanceof Property) setAction('purchase')}}>Buy Property</button>
+                            <button onClick={() => {
+                                setAction('trade');
+                                setMessage(`Who do you want to trade with?`)
+                                }}>Trade</button>
+                            <button onClick={() => {
+                                if (!tile.owner && tile instanceof Property) {
+                                    if (tile.price <= player.cash) {
+                                        setMessage(`Does ${player.name} want to buy ${tile.name}?`)
+                                        setAction('purchase');
+                                    } else {
+                                        setMessage(`${player.name} doesn't have enough to buy ${tile.name}`)
+                                    }
+                                }
+                                }}>Buy Property</button>
                             {player.cash >= 0 ? <button onClick={endTurn}>End Turn</button> : <button onClick={() => setAction('bankrupt')}>Bankruptcy</button>}
                           </div>
             } else {
