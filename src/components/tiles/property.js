@@ -35,6 +35,16 @@ export default class Property extends Tile {
     this.buildingPrice = home;
   }
 
+  reset() {
+    this.owner = null;
+    this.monopoly = false;
+    this.mortgaged = false;
+
+    while (this.buildings > 0) {
+      this.sell();
+    }
+  }
+
   getMonopoly() {
     this.monopoly = true;
     this.rent *= 2;

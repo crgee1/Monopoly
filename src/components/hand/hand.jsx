@@ -57,7 +57,7 @@ export default function Hand(props) {
 
     const displayBuildings = (tile, max, even) => {
         let buildingArr = [];
-        if (tile.monopoly) {
+        if (tile.monopoly && !tile.mortgaged) {
             for (let i = 0; i < tile.buildings; i++) {
                 buildingArr.push(<i key={i} className="fas fa-home" onClick={sellHome(tile)}></i>)
             }

@@ -15,7 +15,7 @@ export default function Board(props) {
   const [display, setDisplay] = useState(null);
   const [pos, setPos] = useState()
   
-  const { activePlayer, setActivePlayer, players } = props;
+  const { activePlayer, setActivePlayer, players, setPlayers } = props;
 
   useEffect(() => {
     const setup = function() {
@@ -606,6 +606,7 @@ export default function Board(props) {
             move={move} 
             player={players[activePlayer]}
             players={players}
+            setPlayers={setPlayers}
             nextPlayer={nextPlayer}
             roll={roll}
             setRoll={setRoll}

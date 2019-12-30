@@ -13,7 +13,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, moveToJail } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail } = props;
 
     const move = (die1 = null, die2=null) => {
         return () => {
@@ -55,7 +55,7 @@ export default function Interface(props) {
             }
 
             if (player.cash < 0) {
-                setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property`)
+                setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property?`)
                 setAction('bankrupt');
             }
         }
@@ -117,7 +117,8 @@ export default function Interface(props) {
                 toolbar = <div>
                             <button onClick={() => setAction('mortgage')}>Mortgage</button>
                             <button onClick={() => setAction('trade')}>Trade</button>
-                            <button onClick={endTurn}>End Turn</button> 
+                            <button onClick={() => {if (!tile.owner) setAction('purchase')}}>Buy Property</button>
+                            {player.cash >= 0 ? <button onClick={endTurn}>End Turn</button> : <button onClick={() => setAction('bankrupt')}>Bankruptcy</button>}
                           </div>
             } else {
                 toolbar = <div>
@@ -139,6 +140,25 @@ export default function Interface(props) {
         setTiles(tilesArr);
         setMessage(`${player.name} now owns ${tile.name}`)
         setAction(null);
+    }
+
+    const declareBankruptcy = () => {
+        let tilesArr = [...tiles];
+        let playersArr = [...players];
+
+        player.properties.forEach(property => {
+            property.reset();
+            tilesArr[property.index].tile = property;
+        })
+
+        players.splice(players.indexOf(player), 1);
+        delete tilesArr[player.position].players[player.name];
+        
+        setMoved(false);
+        setMessage(null);
+        setRoll([]);
+        setAction(null);
+        setTiles(tilesArr);
     }
 
     const displayAction = () => {
@@ -177,7 +197,7 @@ export default function Interface(props) {
                             />
                 break;
             case 'bankrupt':
-                component = <button>Declare Bankruptcy</button>
+                component = <button onClick={declareBankruptcy}>Declare Bankruptcy</button>
                 break;
             default:
                 break;
