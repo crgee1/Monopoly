@@ -13,7 +13,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, moveToJail } = props;
 
     const move = (die1 = null, die2=null) => {
         return () => {
@@ -144,7 +144,6 @@ export default function Interface(props) {
 
     const declareBankruptcy = () => {
         let tilesArr = [...tiles];
-        let playersArr = [...players];
 
         player.properties.forEach(property => {
             property.reset();

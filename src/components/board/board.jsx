@@ -88,6 +88,7 @@ export default function Board(props) {
           let start = {tile};
           start['players'] = {};
           players.forEach(player => {
+            console.log(player)
             start.players[player.name] = player;
           })
           return start;
@@ -207,7 +208,7 @@ export default function Board(props) {
           case 'Horse':
             figure = <i key={idx} style={styleObj} className="fas fa-horse"></i>;
             break;
-          case 'Bike':
+          case 'Bicycle':
             figure = <i key={idx} style={styleObj} className="fas fa-bicycle"></i>;
             break;
           case 'Dog':

@@ -1,6 +1,6 @@
 export default class Player {
   constructor(name, piece) {
-    this.cash = 200;
+    this.cash = 1500;
     this.position = 0;
     this.properties = [];
     this.doubles = 0;
