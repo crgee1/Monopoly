@@ -16,8 +16,6 @@ export default function Trade(props) {
         setTradeCash2(0);
     }, [tradePartner])
 
-
-
     const displayTradepartners = () => {
         let result = [];
         let name = player.name;
@@ -79,12 +77,12 @@ export default function Trade(props) {
     }
 
     const displayProperties = (player) => {
-        return player.properties.map((tile, i) => {
+        return player.properties.filter(tile => tile.buildings === 0).map((tile, i) => {
             let border = '1px solid black';
             if (player.name === tradePartner.name) {
-                if (trade2.includes(tile)) border = '1px red solid'
+                if (trade2.includes(tile)) border = '1px red solid';
             } else {
-                if (trade1.includes(tile)) border = '1px red solid'
+                if (trade1.includes(tile)) border = '1px red solid';
             }
             return <div key={i} className="tile" style={{ border }} onClick={addToTrade(tile, player)}>
                         <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name.split(' ').map(el => el.slice(0,3)).join(' ')}</header>

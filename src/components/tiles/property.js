@@ -9,6 +9,7 @@ export default class Property extends Tile {
     this.buildings = 0;
     this.owner = null;
     this.monopoly = false;
+    this.mortgaged = false;
 
     let home; 
     switch (this.color) {

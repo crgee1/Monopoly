@@ -170,7 +170,6 @@
   align-items: center;
   margin-top: -63px;
   transition: ease .5s;
-
 }
 
 .hand-stack:hover .tile {
@@ -228,8 +227,18 @@
   justify-content: center;
 }
 
-.trade-properties .tile {
+.trade-properties .tile, .mortgage-properties .tile {
   width: 55px;
+}
+
+.mortgage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mortgage-properties {
+  margin-top: 10px;
 }
 
 .mid {

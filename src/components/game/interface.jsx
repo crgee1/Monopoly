@@ -5,6 +5,7 @@ import Tax from '../tiles/tax';
 import GoToJail from '../tiles/go_to_jail';
 import Hand from '../hand/hand';
 import Trade from './trade';
+import Mortgage from './mortgage';
 
 export default function Interface(props) {
     const [message, setMessage] = useState(null);
@@ -31,11 +32,15 @@ export default function Interface(props) {
                         setMessage(`${name} doesn't have enough to buy ${tileName}`)
                     }
                 } else {
-                    if (tile.owner.name !== name ) {
-                        tile.landed(player);
-                        setMessage(`${name} paid ${tile.owner.name} $${tile.rent} in rent on ${tileName}`)
+                    if (tile.mortgaged) {
+                        setMessage(`${name} landed on the mortgaged property ${tileName}`)
                     } else {
-                        setMessage(`${name} landed on their own property, ${tileName}`)
+                        if (tile.owner.name !== name ) {
+                            tile.landed(player);
+                            setMessage(`${name} paid ${tile.owner.name} $${tile.rent} in rent on ${tileName}`)
+                        } else {
+                            setMessage(`${name} landed on their own property, ${tileName}`)
+                        }
                     }
                 }
             } else if (tile instanceof Chance || tile instanceof Tax) {
@@ -48,6 +53,7 @@ export default function Interface(props) {
             } else {
                 setMessage(`${name} landed on ${tileName}`)
             }
+
             if (player.cash < 0) {
                 setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property`)
                 setAction('bankrupt');
@@ -109,6 +115,7 @@ export default function Interface(props) {
         } else {
             if (moved) {
                 toolbar = <div>
+                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
                             <button onClick={() => setAction('trade')}>Trade</button>
                             <button onClick={endTurn}>End Turn</button> 
                           </div>
@@ -162,7 +169,12 @@ export default function Interface(props) {
                                 setTiles={setTiles}
                             />
                 break;
-            case 'sell':
+            case 'mortgage':
+                component = <Mortgage 
+                                player={player}
+                                setAction={setAction}
+                                setMessage={setMessage}
+                            />
                 break;
             case 'bankrupt':
                 component = <button>Declare Bankruptcy</button>
