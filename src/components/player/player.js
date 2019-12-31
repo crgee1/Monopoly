@@ -32,10 +32,6 @@ export default class Player {
     let die2 = Math.floor(Math.random() * 6 ) + 1;
     if (die1 === die2) {
       this.doubles += 1;
-      if (this.doubles === 3) {
-        this.doubles = 0;
-        return 0;
-      }
     } else {
       this.doubles = 0;
     }

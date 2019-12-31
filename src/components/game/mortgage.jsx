@@ -16,9 +16,13 @@ export default function Trade(props) {
 
     const unmortgaged= (tile) => {
         return () => {
-            setMessage(`Buy back ${tile.name} for $${Math.floor(tile.price * 1.1)}?`);
-            setBuySell('buy')
-            setMortgageProperty(tile);
+            if (player.cash >= Math.floor(tile.price * 1.1)) {
+                setMessage(`Buy back ${tile.name} for $${Math.floor(tile.price * 1.1)}?`);
+                setBuySell('buy')
+                setMortgageProperty(tile);
+            } else {
+                setMessage(`${player.name} does not have $${Math.floor(tile.price * 1.1)} to buy back ${tile.name}`)
+            }
         }
     }
 

@@ -13,7 +13,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, moveToJail } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail } = props;
 
     const move = (die1 = null, die2=null) => {
         return () => {
@@ -21,43 +21,45 @@ export default function Interface(props) {
             const tileName = tile.name;
             const { cash, name } = player;
             setMoved(true);
-            setTile(tile);
-
+            
             if (player.doubles >= 3) {
+                player.doubles = 0;
                 setMessage(`${name} has been sent to jail for speeding!`)
                 moveToJail();
-            }
-            
-            if (tile instanceof Property) {
-                if (!tile.owner) {
-                    if (tile.price <= cash) {
-                        setMessage(`Does ${name} want to buy ${tileName}?`)
-                        setAction('purchase');
-                    } else {
-                        setMessage(`${name} doesn't have enough to buy ${tileName}`)
-                    }
-                } else {
-                    if (tile.mortgaged) {
-                        setMessage(`${name} landed on the mortgaged property ${tileName}`)
-                    } else {
-                        if (tile.owner.name !== name ) {
-                            tile.landed(player);
-                            setMessage(`${name} paid ${tile.owner.name} $${tile.rent} in rent on ${tileName}`)
+            } else {
+                setTile(tile);
+
+                if (tile instanceof Property) {
+                    if (!tile.owner) {
+                        if (tile.price <= cash) {
+                            setMessage(`Does ${name} want to buy ${tileName} for ${tile.price}?`)
+                            setAction('purchase');
                         } else {
-                            setMessage(`${name} landed on their own property, ${tileName}`)
+                            setMessage(`${name} doesn't have enough to buy ${tileName}`)
+                        }
+                    } else {
+                        if (tile.mortgaged) {
+                            setMessage(`${name} landed on the mortgaged property, ${tileName}`)
+                        } else {
+                            if (tile.owner.name !== name ) {
+                                tile.landed(player);
+                                setMessage(`${name} paid ${tile.owner.name} $${tile.rent} in rent on ${tileName}`)
+                            } else {
+                                setMessage(`${name} landed on their own property, ${tileName}`)
+                            }
                         }
                     }
+                } else if (tile instanceof Chance || tile instanceof Tax) {
+                    tile.landed(player);
+                    setMessage(`${tileName}! ${name} ${tileName === 'Chance' ? 'gets' : 'loses'} $200`)
+                } else if (tile instanceof GoToJail) {
+                    setMessage(`${name} Goes To Jail!`);
+                    moveToJail();
+                } else {
+                    setMessage(`${name} landed on ${tileName}`)
                 }
-            } else if (tile instanceof Chance || tile instanceof Tax) {
-                tile.landed(player);
-                setMessage(`${tileName}! ${name} ${tileName === 'Chance' ? 'gets' : 'loses'} $200`)
-            } else if (tile instanceof GoToJail) {
-                setMessage(`${name} Goes To Jail!`);
-                moveToJail();
-            } else {
-                setMessage(`${name} landed on ${tileName}`)
             }
-
+            
             if (player.cash < 0) {
                 setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property?`)
                 setAction('bankrupt');
@@ -168,7 +170,10 @@ export default function Interface(props) {
 
         players.splice(players.indexOf(player), 1);
         delete tilesArr[player.position].players[player.name];
-        
+
+        if (players.length === 1) alert(`${players[0].name} won monopoly!`)
+
+        setPlayers(players);
         setMoved(false);
         setMessage(null);
         setRoll([]);
