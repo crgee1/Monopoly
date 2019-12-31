@@ -22,6 +22,11 @@ export default function Interface(props) {
             const { cash, name } = player;
             setMoved(true);
             setTile(tile);
+
+            if (player.doubles >= 3) {
+                setMessage(`${name} has been sent to jail for speeding!`)
+                moveToJail();
+            }
             
             if (tile instanceof Property) {
                 if (!tile.owner) {

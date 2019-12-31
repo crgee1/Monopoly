@@ -77,7 +77,7 @@ export default function Trade(props) {
     }
 
     const displayProperties = (player) => {
-        return player.properties.filter(tile => tile.buildings === 0).map((tile, i) => {
+        return player.properties.filter(tile => tile.buildings === 0).filter(tile => !tile.mortgaged).map((tile, i) => {
             let border = '1px solid black';
             if (player.name === tradePartner.name) {
                 if (trade2.includes(tile)) border = '1px red solid';
