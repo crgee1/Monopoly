@@ -7,7 +7,7 @@ export default function Trade(props) {
     const [tradeCash1, setTradeCash1] = useState(0);
     const [tradeCash2, setTradeCash2] = useState(0);
     
-    const { players, player, setAction, tiles, setTiles } = props;
+    const { players, player, setAction, tiles, setTiles, displayPiece } = props;
 
     useEffect(() => {
         setTrade2([]);
@@ -23,7 +23,7 @@ export default function Trade(props) {
         players.forEach((player, i) => {
             if (name !== player.name) {
                 result.push(
-                    <button key={i} onClick={() => setTradePartner(player)}>{player.name}</button>
+            <button key={i} onClick={() => setTradePartner(player)}>{player.name}{displayPiece(player)}</button>
                 )
             }
         })

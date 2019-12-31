@@ -202,6 +202,7 @@ export default function Interface(props) {
                                 setAction={setAction}
                                 tiles={tiles}
                                 setTiles={setTiles}
+                                displayPiece={displayPiece}
                             />
                 break;
             case 'mortgage':
