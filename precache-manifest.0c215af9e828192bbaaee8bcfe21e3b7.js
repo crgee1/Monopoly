@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "61842c98f92e751efe262f4786c4ed60",
+    "revision": "6aca7458862f88dfd7884b8d6da987b3",
     "url": "/Monopoly/index.html"
   },
   {
