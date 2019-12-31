@@ -129,7 +129,7 @@ export default function Interface(props) {
                             <button onClick={() => {
                                 if (!tile.owner && tile instanceof Property) {
                                     if (tile.price <= player.cash) {
-                                        setMessage(`Does ${name} want to buy ${tileName} for $${tile.price}?`)
+                                        setMessage(`Does ${player.name} want to buy ${tile.name} for $${tile.price}?`)
                                         setAction('purchase');
                                     } else {
                                         setMessage(`${player.name} doesn't have enough to buy ${tile.name}`)
