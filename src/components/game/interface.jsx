@@ -13,7 +13,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece, setActivePlayer } = props;
 
     const move = (die1 = null, die2=null) => {
         return () => {
@@ -177,7 +177,8 @@ export default function Interface(props) {
             property.reset();
             tilesArr[property.index].tile = property;
         })
-
+        
+        if (players.indexOf(player) === players.length -1) setActivePlayer(0);
         players.splice(players.indexOf(player), 1);
         delete tilesArr[player.position].players[player.name];
 

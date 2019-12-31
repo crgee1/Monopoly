@@ -223,6 +223,7 @@ export default function Board(props) {
   return <div className="board-container">
           <Interface
             move={move}
+            setActivePlayer={setActivePlayer}
             player={players[activePlayer]}
             players={players}
             setPlayers={setPlayers}
