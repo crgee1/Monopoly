@@ -110,10 +110,20 @@ export default function Interface(props) {
         if (player.jailed) {
             if (player.turnsJailed === 0 || moved) {
                 toolbar = <div>
+                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
+                            <button onClick={() => {
+                                setAction('trade');
+                                setMessage(`Who do you want to trade with?`)
+                            }}>Trade</button>
                             <button onClick={endTurn}>End Turn</button>
                          </div>
             } else {
                 toolbar = <div>
+                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
+                            <button onClick={() => {
+                                setAction('trade');
+                                setMessage(`Who do you want to trade with?`)
+                            }}>Trade</button>
                             <button onClick={payFine}>Pay $50</button>
                             <button onClick={rollForJail}>Roll</button>
                          </div>
