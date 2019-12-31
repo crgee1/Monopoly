@@ -13,7 +13,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece } = props;
 
     const move = (die1 = null, die2=null) => {
         return () => {
@@ -254,6 +254,7 @@ export default function Interface(props) {
             <div className="player-info">
                 <div>{player.name}</div>
                 <div>${player.cash}</div>
+                <div>{displayPiece(player)}</div>
             </div>
             {displayToolbar()}
             {displayRoll()}

@@ -131,35 +131,6 @@ export default function Board(props) {
     setActivePlayer((activePlayer + 1) % players.length);
   }
 
-  const displayOwner = (owner) => {
-    if (!owner) return null;
-
-    let figure;
-    switch (owner.piece) {
-      case 'Horse':
-        figure = <i className="fas fa-horse mini"></i>;
-        break;
-      case 'Bicycle':
-        figure = <i className="fas fa-bicycle mini"></i>;
-        break;
-      case 'Dog':
-        figure = <i className="fas fa-dog mini"></i>
-        break;
-      case 'Car':
-        figure = <i className="fas fa-car mini"></i>
-        break;
-      case 'Ship':
-        figure = <i className="fas fa-ship mini"></i>
-        break;
-      case 'Cat':
-        figure = <i className="fas fa-cat mini"></i>
-        break;
-      default:
-        break;
-    }
-    return figure;
-  }
-
   const handleClick= (tile) => {
     return e => {
       setDisplay(tile);
@@ -190,49 +161,57 @@ export default function Board(props) {
            </div>
   }
 
+  const displayPiece = (player, mini=false, idx=0) => {
+    if (!player) return null;
+
+    let figure;
+    let addClass = '';
+
+    if (player.jailed && !mini) {
+      addClass += " gray";
+    }
+
+    if (mini) {
+      addClass += " mini"
+    }
+
+    switch (player.piece) {
+      case 'Horse':
+        figure = <i key={idx} className={"fas fa-horse" + (addClass ? addClass : '')}></i>;
+        break;
+      case 'Bicycle':
+        figure = <i key={idx} className={"fas fa-bicycle" + (addClass ? addClass : '')}></i>;
+        break;
+      case 'Dog':
+        figure = <i key={idx} className={"fas fa-dog" + (addClass ? addClass : '')}></i>
+        break;
+      case 'Car':
+        figure = <i key={idx} className={"fas fa-car" + (addClass ? addClass : '')}></i>
+        break;
+      case 'Ship':
+        figure = <i key={idx} className={"fas fa-ship" + (addClass ? addClass : '')}></i>
+        break;
+      case 'Cat':
+        figure = <i key={idx} className={"fas fa-cat" + (addClass ? addClass : '')}></i>
+        break;
+      default:
+        break;
+    }
+    return figure;
+  }
+
   let board = tiles.map((tileObj, i) => {
     let { tile } = tileObj;
     let playerArr = Object.values(tileObj.players);
     if (playerArr.length > 0) {
-      playerArr = playerArr.map((player, idx) => {
-        let figure;
-        let styleObj = null;
-
-        if (player.jailed) {
-          styleObj={color: 'gray'};
-        }
-
-        switch (player.piece) {
-          case 'Horse':
-            figure = <i key={idx} style={styleObj} className="fas fa-horse"></i>;
-            break;
-          case 'Bicycle':
-            figure = <i key={idx} style={styleObj} className="fas fa-bicycle"></i>;
-            break;
-          case 'Dog':
-            figure = <i key={idx} style={styleObj} className="fas fa-dog"></i>
-            break;
-          case 'Car':
-            figure = <i key={idx} style={styleObj} className="fas fa-car"></i>
-            break;
-          case 'Ship':
-            figure = <i key={idx} style={styleObj} className="fas fa-ship"></i>
-            break;
-          case 'Cat':
-            figure = <i key={idx} style={styleObj} className="fas fa-cat"></i>
-            break;
-          default:
-            break;
-        }
-        return figure;
-      })
+      playerArr = playerArr.map((player, idx) => displayPiece(player, false, idx))
     }
 
     let color = tile.color || 'lightgray';
 
     return <div key={i} className="tile">
             {/* <div key={i} className="tile" onMouseMove={handleClick(tile)} onMouseLeave={() => setDisplay(null)}> */}
-              <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayOwner(tile.owner)}</header>
+              <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayPiece(tile.owner, true)}</header>
               <div className="tile-players">
                 {playerArr}
               </div>
@@ -253,6 +232,7 @@ export default function Board(props) {
             tiles={tiles}
             setTiles={setTiles}
             moveToJail={moveToJail}
+            displayPiece={displayPiece}
           />
           <div className="board">
             <div className="row">{board.slice(0,10)}</div>
