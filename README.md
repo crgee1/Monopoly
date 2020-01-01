@@ -2,7 +2,7 @@
 
 # Development
 
-I like Monopoly. I wished I played it more, but having to constantly keep track of different denominations of currency is one of the few reasons I'm glad I'm not rich.
+I like Monopoly. I wished I played it more, but having to constantly keep track of different denominations of currency is one of the few reasons I'm glad I'm not rich. Hopefully this app solves some of my woes with the game.
 
 # Development
 
