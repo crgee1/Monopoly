@@ -68,6 +68,12 @@ export default function Hand(props) {
         }
     }
 
+    const displayMortgaged = (property) => {
+        if (!property.mortgaged) return null;
+
+        return <div className='mortgage-sign'>MORTGAGED</div>
+    }
+
     let propObjValues = Object.values(propObj);
 
     let stackStyle = propObjValues.length < 8 ? {margin: '5px'} : null;
@@ -84,6 +90,7 @@ export default function Hand(props) {
                             <div>House Cost: ${tile.buildingPrice}</div>
                         </div>
                         {displayBuildings(tile, max, even)}
+                        {displayMortgaged(tile)}
                    </div>
         })
         return (

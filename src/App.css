@@ -260,6 +260,15 @@
   margin-top: 10px;
 }
 
+.mortgage-sign {
+  transform: rotateZ(-34deg);
+  font-size: 14px;
+  position: absolute;
+  color: red;
+  margin-top: 48px;
+  font-weight: 700;
+}
+
 .mid {
   border: 1px transparent solid;
 }
