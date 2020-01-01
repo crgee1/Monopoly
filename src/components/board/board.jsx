@@ -8,6 +8,7 @@ import Tax from '../tiles/tax';
 import Chance from '../tiles/chance';
 import GoToJail from '../tiles/go_to_jail';
 import Interface from '../game/interface';
+import Leaderboard from './leaderboard';
 
 export default function Board(props) {
   const [tiles, setTiles] = useState([]);
@@ -594,5 +595,8 @@ export default function Board(props) {
             </div>
           </div>
           {displayContextMenu()}
+          <Leaderboard
+            players={players}
+          />
         </div>
 }

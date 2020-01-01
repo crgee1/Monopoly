@@ -44,9 +44,10 @@
 
 .board-container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* min-height: 100vh; */
 }
 
 .board {
@@ -232,6 +233,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 187px;
+  width: 420px;
 }
 
 .trade-cash {
@@ -241,23 +245,52 @@
 }
 
 .trade-properties {
-  margin: 5px;
-  width: 400px;
-  height: 69px;
+  position: absolute;
+  margin: 20px 5px 5px;
+  width: 420px;
   display: flex;
   justify-content: center;
 }
 
+.trade-stack .tile {
+  margin-top: -42px;
+  transition: ease .5s;
+  margin-left: -15px;
+}
+
 .trade-properties .tile, .mortgage-properties .tile {
   width: 65px;
-  margin-left: -15px;
+  /* margin-left: -15px; */
   position: relative;
   transition: ease .5s;
 }
 
-.trade-properties .tile:hover, .mortgage-properties .tile:hover {
-  margin: 0 30px 0 25px;
+.trade-properties .tile:first-child, .mortgage-properties .tile:first-child {
+  width: 65px;
+  /* margin-left: 0; */
+  position: relative;
   transition: ease .5s;
+}
+
+.trade-properties .trade-stack:hover, .mortgage-properties .trade-stack:hover {
+  margin: 0 30px;
+  transition: ease .5s;
+}
+
+.trade-stack {
+  display: flex;
+  flex-direction: column;
+  transition: ease .5s;
+  /* min-width: 90px; */
+}
+
+.trade-stack:hover .tile {
+  margin-top: 5px;
+  transition: ease .5s;
+}
+
+.trade-stack .tile:first-child {
+  margin-top: 0;
 }
 
 .mortgage-container {
@@ -344,6 +377,18 @@
   color: white;
   text-align: center;
   display: none;   
+}
+
+.leaderboard {
+  margin-left: auto;
+  margin-top: 15px;
+  margin: 15px auto;
+  padding: 15px;
+  background-color: white;
+}
+
+.leaderboard div {
+  text-align: center;
 }
 
 @media (max-width: 920px) {

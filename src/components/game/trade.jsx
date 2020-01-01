@@ -77,16 +77,35 @@ export default function Trade(props) {
     }
 
     const displayProperties = (player) => {
-        return player.properties.filter(tile => tile.buildings === 0).filter(tile => !tile.mortgaged).map((tile, i) => {
-            let border = '1px solid black';
-            if (player.name === tradePartner.name) {
-                if (trade2.includes(tile)) border = '1px red solid';
-            } else {
-                if (trade1.includes(tile)) border = '1px red solid';
+        let propObj = {};
+        player.properties.forEach((tile, i) => {
+            if (tile.buildings === 0 && !tile.mortgaged) {
+                if (propObj[tile.color]) {
+                    propObj[tile.color].push(tile);
+                } else {
+                    propObj[tile.color] = [tile];
+                }
             }
-            return <div key={i} className="tile" style={{ border }} onClick={addToTrade(tile, player)}>
-                        <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name.split(' ').map(el => el.slice(0,3)).join(' ')}</header>
-                   </div>
+        });
+
+        const propertiesStack = Object.values(propObj);
+
+        return propertiesStack.map((stack, idx) => {
+
+            const stackArr = stack.map((tile, i) => {
+                let styleObj = {border: '1px solid black'};
+                if (trade2.includes(tile) || trade1.includes(tile)) styleObj['border'] = '1px red solid';
+                if (propertiesStack.length === 1) styleObj['marginLeft'] = 0;
+                
+                return <div key={i} className="tile" style={ styleObj } onClick={addToTrade(tile, player)}>
+                            <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name.split(' ').map(el => el.slice(0,3)).join(' ')}</header>
+                    </div>
+            })
+
+            return <div key={idx} className="trade-stack">
+                        {stackArr}
+                    </div>
+            
         })
     }
 
@@ -95,7 +114,7 @@ export default function Trade(props) {
 
         return <div className="trade-panel">
                     <div className="trade-assets">
-                        {`${player.name} $${player.cash}`}
+                        <div className="trade-header">{`${player.name} $${player.cash}`}</div>
                         <div className="trade-properties">{displayProperties(player)}</div>
                         <div className="trade-cash">${tradeCash1}<input type="range" value={tradeCash1} min="0" max={player.cash} onChange={(e) => setTradeCash1(e.target.value)}/></div>
                     </div>

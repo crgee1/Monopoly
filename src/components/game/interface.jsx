@@ -283,8 +283,8 @@ export default function Interface(props) {
             {displayToolbar()}
             {displayRoll()}
             <div className="message">
-                <div>{message}</div>
                 <div>{message2}</div>
+                <div>{message}</div>
             </div>
             {displayAction()}
             <Hand
