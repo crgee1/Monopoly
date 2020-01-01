@@ -20,6 +20,7 @@ export default class Player {
 
   gainProperty(property) {
     this.properties.push(property);
+    this.properties.sort((a,b) => a.color > b.color ? 1 : -1);
     property.buy(this);
   }
 

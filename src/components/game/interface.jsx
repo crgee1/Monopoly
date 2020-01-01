@@ -14,6 +14,8 @@ export default function Interface(props) {
     const [tile, setTile] = useState();
 
     const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece, setActivePlayer } = props;
+    const turns =  (player.turnsJailed > 1) ? 'turns' : 'turn';
+    if (player.jailed) setMessage(`${player.name} has been in jail for ${turnsJailed} ${turns}`)
 
     const move = (die1 = null, die2=null) => {
         return () => {
