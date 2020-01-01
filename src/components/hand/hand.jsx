@@ -14,7 +14,7 @@ export default function Hand(props) {
 
     for (let color in propObj) {
         let tileArr = propObj[color];
-        if (color === 'Blue' || color === 'Brown') {
+        if (color === 'SteelBlue' || color === 'Brown') {
             if (tileArr[0].monopoly === false && tileArr.length === 2) {
                 tileArr.forEach(tile => tile.getMonopoly())
             }

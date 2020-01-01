@@ -22,7 +22,7 @@ export default function Interface(props) {
             if (player.jailed) setMessage(`${player.name} has been in jail for ${player.turnsJailed} ${turns}`)
         }
     
-        if (roll[0] === roll[1] && !player.jailed && roll[0]) setMessage2(`${player.name} rolled a double, they get to go again!`) 
+        if (roll[0] === roll[1] && player.turnsJailed < 1 && roll[0] && !player.jailed) setMessage2(`${player.name} rolled a double, they get to go again!`) 
     }, [setMessage, player, roll])
 
     const move = (die1 = null, die2 = null) => {
