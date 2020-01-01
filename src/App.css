@@ -70,6 +70,11 @@
 
 .message {
   margin-bottom: 5px;
+  text-align: center;
+}
+
+.message div {
+  margin-bottom: 5px;
 }
 
 .toolbar {
@@ -234,6 +239,7 @@
 }
 
 .trade-properties {
+  margin: 5px;
   width: 400px;
   height: 69px;
   display: flex;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Property from '../tiles/property';
 import Chance from '../tiles/chance';
 import Tax from '../tiles/tax';
@@ -9,15 +9,23 @@ import Mortgage from './mortgage';
 
 export default function Interface(props) {
     const [message, setMessage] = useState(null);
+    const [message2, setMessage2] = useState(null);
     const [action, setAction] = useState(null);
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
     const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece, setActivePlayer } = props;
-    const turns =  (player.turnsJailed > 1) ? 'turns' : 'turn';
-    if (player.jailed) setMessage(`${player.name} has been in jail for ${turnsJailed} ${turns}`)
+    
+    useEffect(() => {
+        if (player.turnsJailed > 0) {
+            const turns =  (player.turnsJailed > 1) ? 'turns' : 'turn';
+            if (player.jailed) setMessage(`${player.name} has been in jail for ${player.turnsJailed} ${turns}`)
+        }
+    
+        if (roll[0] === roll[1] && !player.jailed && roll[0]) setMessage2(`${player.name} rolled a double, they get to go again!`) 
+    }, [setMessage, player, roll])
 
-    const move = (die1 = null, die2=null) => {
+    const move = (die1 = null, die2 = null) => {
         return () => {
             const { tile } = props.move(die1, die2);
             const tileName = tile.name;
@@ -55,7 +63,8 @@ export default function Interface(props) {
                     tile.landed(player);
                     setMessage(`${tileName}! ${name} ${tileName === 'Chance' ? 'gets' : 'loses'} $200`)
                 } else if (tile instanceof GoToJail) {
-                    setMessage(`${name} Goes To Jail!`);
+                    setMessage(`${name} landed on Go to Jail`);
+                    setMessage2(`${name} went to Jail!`);
                     moveToJail();
                 } else {
                     setMessage(`${name} landed on ${tileName}`)
@@ -63,21 +72,21 @@ export default function Interface(props) {
             }
             
             if (player.cash < 0) {
-                setMessage(`${player.name} ran out of money. Declare bankruptcy or sell property?`)
+                setMessage2(`${player.name} ran out of money. Declare bankruptcy or sell property?`)
                 setAction('bankrupt');
             }
         }
     }
     
     const endTurn = () => {
-        const [die1, die2] = roll;
-        if (die1 !== die2 || player.jailed || player.turnsJailed > 0) {
+        if (roll[0] !== roll[1] || player.jailed || player.turnsJailed > 0) {
             nextPlayer();
         } 
         if (player.turnsJailed > 0 && !player.jailed) player.turnsJailed = 0;
         if (player.jailed) player.turnsJailed ++;
         setMoved(false);
         setMessage(null);
+        setMessage2(null);
         setRoll([]);
         setAction(null);
     }
@@ -108,36 +117,35 @@ export default function Interface(props) {
 
     const displayToolbar = () => {
         let toolbar;
-
+        const mortgageBtn = <button onClick={() => {
+                                setAction('mortgage')
+                                setMessage('What would you like to mortgage?');
+                            }}>Mortgage</button>;
+        const tradeBtn = <button onClick={() => {
+                            setAction('trade');
+                            setMessage(`Who do you want to trade with?`)
+                         }}>Trade</button>                   
+        
         if (player.jailed) {
             if (player.turnsJailed === 0 || moved) {
                 toolbar = <div>
-                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
-                            <button onClick={() => {
-                                setAction('trade');
-                                setMessage(`Who do you want to trade with?`)
-                            }}>Trade</button>
+                            {mortgageBtn}
+                            {tradeBtn}
                             <button onClick={endTurn}>End Turn</button>
                          </div>
             } else {
                 toolbar = <div>
-                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
-                            <button onClick={() => {
-                                setAction('trade');
-                                setMessage(`Who do you want to trade with?`)
-                            }}>Trade</button>
-                            <button onClick={payFine}>Pay $50</button>
+                            {mortgageBtn}
+                            {tradeBtn}
+                            <button onClick={payFine}>Pay $50 fine</button>
                             <button onClick={rollForJail}>Roll</button>
                          </div>
             }
         } else {
             if (moved) {
                 toolbar = <div>
-                            <button onClick={() => setAction('mortgage')}>Mortgage</button>
-                            <button onClick={() => {
-                                setAction('trade');
-                                setMessage(`Who do you want to trade with?`)
-                                }}>Trade</button>
+                            {mortgageBtn}
+                            {tradeBtn}
                             <button onClick={() => {
                                 if (!tile.owner && tile instanceof Property) {
                                     if (tile.price <= player.cash) {
@@ -189,6 +197,7 @@ export default function Interface(props) {
         setPlayers(players);
         setMoved(false);
         setMessage(null);
+        setMessage2(null);
         setRoll([]);
         setAction(null);
         setTiles(tilesArr);
@@ -205,6 +214,7 @@ export default function Interface(props) {
                                 <button onClick={() => {
                                     setAction(null);
                                     setMessage(null);
+                                    setMessage2(null);
                                     }}>No</button>
                             </div>
                 break;
@@ -273,7 +283,8 @@ export default function Interface(props) {
             {displayToolbar()}
             {displayRoll()}
             <div className="message">
-                {message}
+                <div>{message}</div>
+                <div>{message2}</div>
             </div>
             {displayAction()}
             <Hand
