@@ -26,7 +26,7 @@ export default class Property extends Tile {
         home = 150;
         break;
       case 'Green':
-      case 'Blue':
+      case 'SteelBlue':
         home = 200;
         break;
       default:
