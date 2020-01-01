@@ -70,8 +70,9 @@ export default function StartMenu() {
                </div>
     }
 
-    return <div>
+    return <div className="options">
                 {menu()}
                 {startGame()}
+                <div className="small-screen">A bigger screen is needed to play</div>
            </div>
 }

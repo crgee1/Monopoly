@@ -207,7 +207,7 @@
 }
 
 .tile-info div {
-  margin-left: 5px;
+  margin-left: 1px;
 }
 
 .trade-container {
@@ -312,4 +312,27 @@
 
 .piece-container .fas{
   margin-left: 5px;
+}
+
+.small-screen {
+  color: white;
+  text-align: center;
+  display: none;   
+}
+
+@media (max-width: 920px) {
+  .start-menu {
+    display: none;
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .small-screen {
+    display: block;
+  }
 }
