@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Monopoly/static/css/main.911381ba.chunk.css",
-    "main.js": "/Monopoly/static/js/main.42bfe5be.chunk.js",
-    "main.js.map": "/Monopoly/static/js/main.42bfe5be.chunk.js.map",
+    "main.js": "/Monopoly/static/js/main.18a42764.chunk.js",
+    "main.js.map": "/Monopoly/static/js/main.18a42764.chunk.js.map",
     "runtime-main.js": "/Monopoly/static/js/runtime-main.35724b30.js",
     "runtime-main.js.map": "/Monopoly/static/js/runtime-main.35724b30.js.map",
     "static/js/2.08cbf798.chunk.js": "/Monopoly/static/js/2.08cbf798.chunk.js",
     "static/js/2.08cbf798.chunk.js.map": "/Monopoly/static/js/2.08cbf798.chunk.js.map",
     "index.html": "/Monopoly/index.html",
-    "precache-manifest.eef8df802cf021704285475148fafd24.js": "/Monopoly/precache-manifest.eef8df802cf021704285475148fafd24.js",
+    "precache-manifest.73d29ce71cdfa2eceb9d1e26d8717fa0.js": "/Monopoly/precache-manifest.73d29ce71cdfa2eceb9d1e26d8717fa0.js",
     "service-worker.js": "/Monopoly/service-worker.js",
     "static/css/main.911381ba.chunk.css.map": "/Monopoly/static/css/main.911381ba.chunk.css.map",
     "static/js/2.08cbf798.chunk.js.LICENSE": "/Monopoly/static/js/2.08cbf798.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.35724b30.js",
     "static/js/2.08cbf798.chunk.js",
     "static/css/main.911381ba.chunk.css",
-    "static/js/main.42bfe5be.chunk.js"
+    "static/js/main.18a42764.chunk.js"
   ]
 }
