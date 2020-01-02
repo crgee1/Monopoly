@@ -92,9 +92,14 @@ export default function Interface(props) {
     }
 
     const payFine = () => {
-        player.cash -= 50;
-        player.getOutOfJail();
-        setMessage(`${player.name} is out of jail`)
+        if (player.cash >= 50) {
+            player.cash -= 50;
+            player.getOutOfJail();
+            setMessage(`${player.name} is out of jail`);
+        } else {
+            setMessage(`${player.name} doesn't have enough to pay the jail fine`);
+
+        }
     }
     
     const rollForJail = () => {

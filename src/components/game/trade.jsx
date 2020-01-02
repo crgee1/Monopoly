@@ -129,6 +129,6 @@ export default function Trade(props) {
     return <div className="trade-container">
                 {displayTradepartners()}
                 {displayTrade()}
-                {tradePartner ? <button onClick={acceptTrade}>Trade</button> : null}
+                {tradePartner ? <button onClick={acceptTrade}>Confrim Trade</button> : null}
            </div>
 }

@@ -45,14 +45,15 @@ export default function Trade(props) {
     }
 
     const displayProperties = (player) => {
-        return player.properties.filter(tile => tile.buildings === 0).map((tile, i) => {
-            let border = '1px solid black';
+        return player.properties.filter(tile => tile.buildings === 0).map((tile, i, stack) => {
+            let styleObj = {border: '1px solid black'};
             let func = askToMortgage(tile);
             if (tile.mortgaged) {
-                border = '1px red solid';
+                styleObj['border'] = '1px red solid';
                 func = unmortgaged(tile);
             }
-            return <div key={i} className="tile" style={{ border }} onClick={func}>
+            
+            return <div key={i} className="tile" style={ styleObj } onClick={func}>
                 <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name.split(' ').map(el => el.slice(0, 3)).join(' ')}</header>
             </div>
         })

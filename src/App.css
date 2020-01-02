@@ -254,13 +254,11 @@
 
 .trade-stack .tile {
   margin-top: -42px;
-  transition: ease .5s;
-  margin-left: -15px;
 }
 
-.trade-properties .tile, .mortgage-properties .tile {
+.trade-properties .tile {
   width: 65px;
-  /* margin-left: -15px; */
+  margin-left: -15px;
   position: relative;
   transition: ease .5s;
 }
@@ -297,11 +295,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .mortgage-properties {
   margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
+
+.mortgage-properties .tile:not(:first-child) {
+  width: 65px;
+  margin-left: -15px;
+  position: relative;
+  transition: ease .5s;
+}
+
+.mortgage-properties .tile:hover {
+  transition: ease .5s;
+  margin: 0 30px;
+}
+
+/* .mortgage-properties .tile:first-child:hover {
+  transition: ease .5s;
+  margin: 0;
+} */
 
 .mortgage-sign {
   transform: rotateZ(-34deg);
