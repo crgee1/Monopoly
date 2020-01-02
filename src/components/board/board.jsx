@@ -16,7 +16,7 @@ export default function Board(props) {
   const [display, setDisplay] = useState(null);
   const [pos, setPos] = useState()
   
-  const { activePlayer, setActivePlayer, players, setPlayers } = props;
+  const { activePlayer, setActivePlayer, players, setPlayers, setModal } = props;
 
   useEffect(() => {
     const setup = function() {
