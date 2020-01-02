@@ -53,7 +53,7 @@ export default function Interface(props) {
                         } else {
                             if (tile.owner.name !== name ) {
                                 tile.landed(player);
-                                setMessage(`${name} paid ${tile.owner.name} $${tile.rent} in rent on ${tileName}`)
+                                setMessage(`${name} paid ${tile.owner.name} $${tile.rentAmount()} in rent on ${tileName}`)
                             } else {
                                 setMessage(`${name} landed on their own property, ${tileName}`)
                             }

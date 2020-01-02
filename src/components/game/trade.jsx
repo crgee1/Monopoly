@@ -88,7 +88,7 @@ export default function Trade(props) {
             }
         });
 
-        const propertiesStack = Object.values(propObj);
+        const propertiesStack = Object.values(propObj).sort((a, b) => (a.length < b.length ? 1 : -1));
 
         return propertiesStack.map((stack, idx) => {
 

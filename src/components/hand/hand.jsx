@@ -86,7 +86,7 @@ export default function Hand(props) {
                         <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name}</header>
                         <div className="tile-info">
                             <div>Price:${tile.price}</div>
-                            <div>Rent: ${tile.rent}</div>
+                            <div>Rent: ${tile.rentAmount()}</div>
                             <div>House Cost: ${tile.buildingPrice}</div>
                         </div>
                         {displayBuildings(tile, max, even)}

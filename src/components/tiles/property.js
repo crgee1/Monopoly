@@ -47,18 +47,18 @@ export default class Property extends Tile {
 
   getMonopoly() {
     this.monopoly = true;
-    this.rent *= 2;
   }
   
   loseMonopoly() {
     this.monopoly = false;
-    this.rent /= 2;
   }
 
   rentAmount() {
     if (this.monopoly && this.buildings === 0) return this.rent * 2;
   
     switch (this.buildings) {
+      case 0:
+        return this.rent;
       case 1:
         return this.rent *= 5;
       case 2:
@@ -90,42 +90,10 @@ export default class Property extends Tile {
   build() {
     this.owner.cash -= this.buildingPrice;
     this.buildings += 1;
-    switch (this.buildings) {
-      case 1:
-        this.rent *= 5;
-        break;
-      case 2:
-        this.rent *= 3;
-        break;
-      case 3:
-        this.rent *= 3;
-        break;
-      case 4:
-        this.rent = this.rent / 45 * 80;
-        break;
-      default:
-        break;
-    }
   }
 
   sell() {
     this.owner.cash += this.buildingPrice / 2;
     this.buildings -= 1;
-    switch (this.buildings) {
-      case 0:
-        this.rent /= 5;
-        break;
-      case 1:
-        this.rent /= 3;
-        break;
-      case 2:
-        this.rent /= 3;
-        break;
-      case 3:
-        this.rent = this.rent * 45 / 80;
-        break;
-      default:
-        break;
-    }
   }
 }
