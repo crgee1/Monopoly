@@ -39,10 +39,10 @@ export default function Leaderboard(props) {
             }, 0);
 
             return <tr key={i}>
-                <td>{player.name}</td>
+                <td >{player.name}</td>
                 <td>${player.cash}</td>
-                <td>{player.properties.length}</td>
-                <td>{housesCount}</td>
+                <td className="table-cell">{player.properties.length}</td>
+                <td className="table-cell">{housesCount}</td>
                 <td>${player.cash + houseTotal + propertyTotal}</td>
             </tr>
         });
@@ -50,11 +50,11 @@ export default function Leaderboard(props) {
     }
 
     return <div className="leaderboard">
-                <div>Leaderboard</div>
+                {/* <div>Leaderboard</div> */}
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th className="table-header-name">Name</th>
                             <th>Cash</th>
                             <th>Properties</th>
                             <th>Houses</th>
