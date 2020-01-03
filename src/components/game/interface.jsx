@@ -188,6 +188,10 @@ export default function Interface(props) {
     const declareBankruptcy = () => {
         let tilesArr = [...tiles];
 
+        if (tile.owner) {
+            tile.owner.cash += player.cash;
+        }
+
         player.properties.forEach(property => {
             property.reset();
             tilesArr[property.index].tile = property;
