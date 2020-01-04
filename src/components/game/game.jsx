@@ -17,9 +17,9 @@ export default function Game(props) {
                 players={players}
                 setModal={setModal}
             />
-            <Modal
+            {/* <Modal
                 modal={modal}
-            />
+            /> */}
         </div>
     )
 }
