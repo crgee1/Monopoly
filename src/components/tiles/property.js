@@ -53,20 +53,20 @@ export default class Property extends Tile {
     this.monopoly = false;
   }
 
-  rentAmount() {
-    if (this.monopoly && this.buildings === 0) return this.rent * 2;
+  rentAmount(houses = this.buildings, zoom = false) {
+    if (this.monopoly && this.buildings === 0 && !zoom) return this.rent * 2;
   
-    switch (this.buildings) {
+    switch (houses) {
       case 0:
         return this.rent;
       case 1:
-        return this.rent *= 5;
+        return this.rent * 5;
       case 2:
-        return this.rent *= 3;
+        return this.rent * 15;
       case 3:
-        return this.rent *= 3;
+        return this.rent * 30;
       case 4:
-        return this.rent = this.rent / 45 * 80;
+        return this.rent * 55;
       default:
         break;
     }

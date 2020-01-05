@@ -9,14 +9,16 @@ import Chance from '../tiles/chance';
 import GoToJail from '../tiles/go_to_jail';
 import Interface from '../game/interface';
 import Leaderboard from './leaderboard';
+import Modal from '../modal/modal';
 
 export default function Board(props) {
   const [tiles, setTiles] = useState([]);
   const [roll, setRoll] = useState([]);
-  const [display, setDisplay] = useState(null);
+  const [displayTile, setDisplayTile] = useState(null);
   const [pos, setPos] = useState()
+  const [modal, setModal] = useState(null);
   
-  const { activePlayer, setActivePlayer, players, setPlayers, setModal } = props;
+  const { activePlayer, setActivePlayer, players, setPlayers } = props;
 
   useEffect(() => {
     const setup = function() {
@@ -98,7 +100,7 @@ export default function Board(props) {
       
     }
     setup();
-  }, [players])
+  }, [players]);
 
   const move = (die1, die2) => {
     let player = players[activePlayer];
@@ -134,18 +136,52 @@ export default function Board(props) {
 
   const handleClick= (tile) => {
     return e => {
-      setDisplay(tile);
-      setPos([e.clientX, e.clientY]);
+      if (tile instanceof Property) {
+        setDisplayTile(tile);
+        let x = e.clientX;
+        let y = e.clientY;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        if (x + 238 > width && y + 263 > height) {
+          x -= 240;
+          y -= 265;
+        }
+        if (x + 235 > width) x -= x + 235 - width;
+        if (y + 260 > height) y -= y + 260 - height;
+
+        setPos([x, y]);
+      }
     }
   }
 
-  const displayContextMenu = () => {
-    if (!display) return null;
-    return <div className="tile cmenu" style={{ left: pos[0]+3, top: pos[1]+3 }}>
-            <header className="tile-header" style={{ backgroundColor: display.color }}>{display.name}</header>
-            <div className="tile-players">
+  const displayZoomedTile = () => {
+    if (!displayTile) return null;
+    return <div className="tile zoom" style={{ left: pos[0]+3, top: pos[1]+3 }}>
+            <header className="tile-header" style={{ backgroundColor: displayTile.color }}>{displayTile.name}</header>
+            <div className="zoom-price">{`PRICE $${displayTile.price}`}</div>
+            <div className="zoom-rent">{`RENT $${displayTile.rent}`}</div>
+            <div className="house-desc-container">
+              <div className="house-desc">
+                <div>With 1 House</div><div>${displayTile.rentAmount(1, true)}</div>
+              </div>
+              <div className="house-desc">
+                <div>With 2 Houses</div><div>${displayTile.rentAmount(2, true)}</div>
+              </div>
+              <div className="house-desc">
+                <div>With 3 Houses</div><div>${displayTile.rentAmount(3, true)}</div>
+              </div>
+              <div className="house-desc">
+                <div>With 4 Houses</div><div>${displayTile.rentAmount(4, true)}</div>
+              </div>
             </div>
-            <div className="tile-price">{display.price ? `$${display.price}` : null}</div>
+            <div className="additional-info">
+              <div>Mortgage Value ${displayTile.price/2}</div>
+              <div>House Cost ${displayTile.buildingPrice} Each</div>
+            </div>
+            <div className="fine-info">
+              If a player owns all the lots of any Color-Group, the rent is doubled on unimproved lots in that group.
+            </div>
           </div>
   }
 
@@ -210,8 +246,7 @@ export default function Board(props) {
 
     let color = tile.color || 'lightgray';
 
-    return <div key={i} className="tile">
-            {/* <div key={i} className="tile" onMouseMove={handleClick(tile)} onMouseLeave={() => setDisplay(null)}> */}
+    return <div key={i} className="tile" onMouseMove={handleClick(tile)} onMouseLeave={() => setDisplayTile(null)}>
               <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayPiece(tile.owner, true)}</header>
               <div className="tile-players">
                 {playerArr}
@@ -235,6 +270,7 @@ export default function Board(props) {
             setTiles={setTiles}
             moveToJail={moveToJail}
             displayPiece={displayPiece}
+            setModal={setModal}
           />
           <div className="board">
             <div className="row">{board.slice(0,10)}</div>
@@ -594,7 +630,12 @@ export default function Board(props) {
                 {board.slice(18,28).reverse()}
             </div>
           </div>
-          {displayContextMenu()}
+          {displayZoomedTile()}
+          <Modal
+            player={players[activePlayer]}
+            modal={modal}
+            setModal={setModal}
+          />
           <Leaderboard
             players={players}
           />

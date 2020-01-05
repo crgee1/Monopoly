@@ -14,7 +14,7 @@ export default function Interface(props) {
     const [moved, setMoved] = useState(false);
     const [tile, setTile] = useState();
 
-    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece, setActivePlayer } = props;
+    const { player, nextPlayer, roll, setRoll, tiles, setTiles, players, setPlayers, moveToJail, displayPiece, setActivePlayer, setModal } = props;
     
     useEffect(() => {
         if (player.turnsJailed > 0) {
@@ -201,7 +201,8 @@ export default function Interface(props) {
         players.splice(players.indexOf(player), 1);
         delete tilesArr[player.position].players[player.name];
 
-        if (players.length === 1) alert(`${players[0].name} won monopoly!`)
+        // if (players.length === 1) alert(`${players[0].name} won monopoly!`)
+        if (players.length === 1) setModal('end');
 
         setPlayers(players);
         setMoved(false);
