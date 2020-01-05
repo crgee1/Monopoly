@@ -143,12 +143,12 @@ export default function Board(props) {
         const width = window.innerWidth;
         const height = window.innerHeight;
 
-        if (x + 238 > width && y + 263 > height) {
-          x -= 240;
-          y -= 265;
+        if (x + 248 > width && y + 273 > height) {
+          x -= 250;
+          y -= 275;
         }
-        if (x + 235 > width) x -= x + 235 - width;
-        if (y + 260 > height) y -= y + 260 - height;
+        if (x + 245 > width) x -= x + 245 - width;
+        if (y + 270 > height) y -= y + 270 - height;
 
         setPos([x, y]);
       }

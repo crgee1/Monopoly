@@ -132,8 +132,8 @@ button {
 }
 
 .zoom {
-  height: 260px;
-  width: 235px;
+  height: 270px;
+  width: 245px;
   position: absolute;
   z-index: 2;
   display: flex;
