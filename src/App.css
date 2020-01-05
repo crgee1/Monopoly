@@ -37,6 +37,10 @@
   }
 }
 
+button {
+  cursor: pointer;
+}
+
 #root {
   background-color: #282c34;
   min-height: 100vh;
@@ -280,7 +284,7 @@
   align-items: center;
   justify-content: space-between;
   height: 187px;
-  width: 420px;
+  width: 390px;
 }
 
 .trade-cash {
