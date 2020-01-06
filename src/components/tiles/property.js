@@ -83,8 +83,8 @@ export default class Property extends Tile {
   }
 
   payRent(player) {
-    player.cash -= this.rent;
-    this.owner.cash += this.rent;
+    player.cash -= this.rentAmount();
+    this.owner.cash += this.rentAmount();
   }
 
   build() {
