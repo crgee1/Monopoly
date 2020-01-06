@@ -66,7 +66,7 @@ export default class Property extends Tile {
       case 3:
         return this.rent * 30;
       case 4:
-        return this.rent * 55;
+        return this.rent * 45;
       default:
         break;
     }

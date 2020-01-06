@@ -24,7 +24,7 @@ export default function Board(props) {
     const setup = function() {
       let set = [
         ['Go'],
-        ['Mediterranean Avenue', 'Brown', 60, 2],
+        ['Mediterranean Avenue', 'Brown', 60, 3],
         ['Chance'],
         ['Baltic Avenue', 'Brown', 60, 4],
         ['Income Tax'],
@@ -58,7 +58,7 @@ export default function Board(props) {
         ['Chance'],
         ['Park Place', 'SteelBlue', 350, 35],
         ['Income Tax'],
-        ['Boardwalk', 'SteelBlue', 400, 50],
+        ['Boardwalk', 'SteelBlue', 400, 45],
       ];
 
       setTiles(set.map((property, i) => {
