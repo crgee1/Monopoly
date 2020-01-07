@@ -63,8 +63,8 @@ export default function Interface(props) {
                     tile.landed(player);
                     setMessage(`${tileName}! ${name} ${tileName === 'Chance' ? 'gets' : 'loses'} $200`)
                 } else if (tile instanceof GoToJail) {
-                    setMessage(`${name} landed on Go to Jail`);
-                    setMessage2(`${name} went to Jail!`);
+                    setMessage2(`${name} landed on Go to Jail`);
+                    setMessage(`${name} went to Jail!`);
                     moveToJail();
                 } else {
                     setMessage(`${name} landed on ${tileName}`)
@@ -201,7 +201,6 @@ export default function Interface(props) {
         players.splice(players.indexOf(player), 1);
         delete tilesArr[player.position].players[player.name];
 
-        // if (players.length === 1) alert(`${players[0].name} won monopoly!`)
         if (players.length === 1) setModal('end');
 
         setPlayers(players);
@@ -243,6 +242,8 @@ export default function Interface(props) {
                                 player={player}
                                 setAction={setAction}
                                 setMessage={setMessage}
+                                setTiles={setTiles}
+                                tiles={tiles}
                             />
                 break;
             case 'bankrupt':

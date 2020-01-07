@@ -4,7 +4,7 @@ export default function Trade(props) {
     const [mortgageProperty, setMortgageProperty] = useState();
     const [buySell, setBuySell] = useState();
 
-    const { player, setMessage } = props;
+    const { player, setMessage, setTiles, tiles } = props;
 
     const askToMortgage = (tile) => {
         return () => {
@@ -36,12 +36,18 @@ export default function Trade(props) {
             player.cash -= Math.floor(mortgageProperty.price * 1.1);
             mortgageProperty.mortgaged = false;
         }
+
+        setTiles([...tiles]);
         setMortgageProperty(null);
     }
 
     const confirmMortgage = () => {
         if (!mortgageProperty) return null;
-        return <button onClick={getMortgageMoney}>Yes</button>
+
+        return <div className="mortgage-btns">
+                    <button onClick={getMortgageMoney}>Yes</button>
+                    <button onClick={() => setMortgageProperty(null)}>No</button>
+               </div>
     }
 
     const displayProperties = (player) => {

@@ -36,6 +36,15 @@ export default class Player {
     } else {
       this.doubles = 0;
     }
+    
     return [die1, die2];
+  }
+
+  netWorth() {
+    const assetTotal = this.properties.reduce((acc, property) => {
+      return acc += property.buildingPrice * property.buildings + property.price;
+    }, 0);
+
+    return assetTotal + this.cash;
   }
 }
