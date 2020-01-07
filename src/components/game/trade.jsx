@@ -98,8 +98,15 @@ export default function Trade(props) {
                 if (propertiesStack.length === 1) styleObj['marginLeft'] = 0;
                 
                 return <div key={i} className="tile" style={ styleObj } onClick={addToTrade(tile, player)}>
-                            <header className="tile-header" style={{ backgroundColor: tile.color }}>{tile.name.split(' ').map(el => el.slice(0,3)).join(' ')}</header>
-                    </div>
+                            <header className="tile-header" style={{ backgroundColor: tile.color }}>
+                                {tile.name.split(' ').map(el => el.slice(0,3)).join(' ')}
+                            </header>
+                            <div className="tile-info">
+                                <div>Price:${tile.price}</div>
+                                <div>Rent: ${tile.rentAmount()}</div>
+                                <div>House Cost: ${tile.buildingPrice}</div>
+                            </div>
+                       </div>
             })
 
             return <div key={idx} className="trade-stack">
