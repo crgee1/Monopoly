@@ -134,23 +134,26 @@ export default function Board(props) {
     setActivePlayer((activePlayer + 1) % players.length);
   }
 
-  const handleClick= (tile) => {
+  const handleTileHover = (tile) => {
     return e => {
       if (tile instanceof Property) {
         setDisplayTile(tile);
         let x = e.clientX;
         let y = e.clientY;
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const displayTileHeight = 270;
+        const displayTileWidth = 245;
+        const offset = 5;
 
-        if (x + 248 > width && y + 273 > height) {
-          x -= 250;
-          y -= 275;
+        if (x + displayTileWidth > screenWidth && y + displayTileHeight > screenHeight) {
+          x -= displayTileWidth + offset;
+          y -= displayTileHeight + offset;
         }
-        if (x + 245 > width) x -= x + 245 - width;
-        if (y + 270 > height) y -= y + 270 - height;
+        if (x + displayTileWidth > screenWidth) x -= x + displayTileWidth - screenWidth;
+        if (y + displayTileHeight > screenHeight) y -= y + displayTileHeight - screenHeight;
 
-        setPos([x, y]);
+        setPos([x, y + window.scrollY]);
       }
     }
   }
@@ -246,7 +249,7 @@ export default function Board(props) {
 
     let color = tile.color || 'lightgray';
 
-    return <div key={i} className="tile" onMouseMove={handleClick(tile)} onMouseLeave={() => setDisplayTile(null)}>
+    return <div key={i} className="tile" onMouseMove={handleTileHover(tile)} onMouseLeave={() => setDisplayTile(null)}>
               <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayPiece(tile.owner, true)}</header>
               <div className="tile-players">
                 {playerArr}
