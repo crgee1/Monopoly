@@ -4,7 +4,7 @@ import Player from '../player/player';
 
 export default function StartMenu() {
     const [start, setStart] = useState(false);
-    const [name, setName] = useState();
+    const [name, setName] = useState('');
     const [pieces, setPieces] = useState(['horse', 'bicycle', 'dog', 'car', 'ship', 'cat'])
     const [character, setCharacter] = useState();
     const [players, setPlayers] = useState([]);
@@ -39,7 +39,6 @@ export default function StartMenu() {
         setPieces(pieceArr);
         setCharacter();
         setName('');
-        document.getElementById('name').value = '';
     }
 
     const displayPlayers = () => {
@@ -60,7 +59,7 @@ export default function StartMenu() {
         return <div className="start-menu">
                     <form className="create-form" onSubmit={createPlayer}>
                         <label>Player Name:</label>
-                        <input type="text" id="name" onChange={(e) => setName(e.currentTarget.value)}/>
+                        <input type="text" value={name} onChange={(e) => setName(e.currentTarget.value)}/>
                         <label>Choose A Piece:</label>
                         {displayPieces()}
                         <input type="submit" disabled={!name || !character} value="Add Player"/>
