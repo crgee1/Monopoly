@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6cf291fd212aee2cea1435836576bb25",
+    "revision": "a1c97fd8295962acb0eb308769a90a2e",
     "url": "/Monopoly/index.html"
   },
   {
-    "revision": "0f300a41d335cea3092e",
+    "revision": "cf3b44442cc32cebfcd7",
     "url": "/Monopoly/static/css/main.d5cc671a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Monopoly/static/js/2.92489d82.chunk.js.LICENSE"
   },
   {
-    "revision": "0f300a41d335cea3092e",
-    "url": "/Monopoly/static/js/main.9ca8bebe.chunk.js"
+    "revision": "cf3b44442cc32cebfcd7",
+    "url": "/Monopoly/static/js/main.77664ccf.chunk.js"
   },
   {
     "revision": "9417c9b7f3bea1e9e2b3",
