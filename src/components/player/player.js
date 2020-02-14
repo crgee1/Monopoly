@@ -31,8 +31,6 @@ export default class Player {
   rollDice() {
     let die1 = Math.floor(Math.random() * 6 ) + 1;
     let die2 = Math.floor(Math.random() * 6 ) + 1;
-    die1 = 1
-    die2 = 2
     if (die1 === die2 && !this.jailed) {
       this.doubles += 1;
     } else {
