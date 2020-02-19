@@ -129,6 +129,7 @@ button {
   background-color: white;
   display: flex;
   flex-direction: column;
+  background-color: #CEE6D0;
 }
 
 .zoom {
@@ -138,6 +139,7 @@ button {
   z-index: 2;
   display: flex;
   align-items: center;
+  background-color: white;
 }
 
 .zoom .tile-header {
@@ -167,7 +169,8 @@ button {
 }
 
 .tile-header {
-  height: 26px;
+  padding-top: 3px;
+  height: 23px;
   font-size: 10px;
   font-weight: 600;
   line-height: 11px;
@@ -233,6 +236,7 @@ button {
   align-items: center;
   margin-top: -65px;
   transition: ease .5s;
+  background-color: white;
 }
 
 .hand-stack {
@@ -311,6 +315,10 @@ button {
   margin-left: -15px;
   position: relative;
   transition: ease .5s;
+}
+
+.mortgage-properties .tile {
+  background-color: white;
 }
 
 .trade-properties .tile:first-child, .mortgage-properties .tile:first-child {

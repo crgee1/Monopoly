@@ -247,7 +247,7 @@ export default function Board(props) {
       playerArr = playerArr.map((player, idx) => displayPiece(player, false, idx))
     }
 
-    let color = tile.color || 'lightgray';
+    let color = tile.color || '#CEE6D0';
 
     return <div key={i} className="tile" onMouseMove={handleTileHover(tile)} onMouseLeave={() => setDisplayTile(null)}>
               <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayPiece(tile.owner, true)}</header>
