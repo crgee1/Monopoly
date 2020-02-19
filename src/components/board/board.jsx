@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Go from '../tiles/go';
 import Property from '../tiles/property';
 import Jail from '../tiles/jail';
@@ -144,14 +143,19 @@ export default function Board(props) {
         const screenHeight = window.innerHeight;
         const displayTileHeight = 270;
         const displayTileWidth = 245;
-        const offset = 5;
+        const offset = 10;
 
-        if (x + displayTileWidth > screenWidth && y + displayTileHeight > screenHeight) {
-          x -= displayTileWidth + offset;
-          y -= displayTileHeight + offset;
+        // if (x + displayTileWidth > screenWidth) x -= displayTileWidth + offset;
+        // if (y + displayTileHeight > screenHeight) y -= displayTileHeight + offset;
+        if (y + displayTileHeight > screenHeight) {
+          if (x + displayTileWidth > screenWidth) {
+            x -= displayTileWidth + offset;
+          }
+          y -= y + displayTileHeight - screenHeight + offset
+        };
+        if (x + displayTileWidth > screenWidth) {
+          x -= x + displayTileWidth - screenWidth + offset;
         }
-        if (x + displayTileWidth > screenWidth) x -= x + displayTileWidth - screenWidth;
-        if (y + displayTileHeight > screenHeight) y -= y + displayTileHeight - screenHeight;
 
         setPos([x, y + window.scrollY]);
       }
@@ -249,7 +253,7 @@ export default function Board(props) {
 
     let color = tile.color || '#CEE6D0';
 
-    return <div key={i} className="tile" onMouseMove={handleTileHover(tile)} onMouseLeave={() => setDisplayTile(null)}>
+    return <div key={i} className="tile" style={{ backgroundImage: '../../ assets / images / go_to_jail.png' }} onMouseMove={handleTileHover(tile)} onMouseLeave={() => setDisplayTile(null)}>
               <header className="tile-header" style={{ backgroundColor: color }}>{tile.name}{displayPiece(tile.owner, true)}</header>
               <div className="tile-players">
                 {playerArr}
